@@ -8,13 +8,13 @@ const peopleJson =
 class PeopleService {
   /// get all people for our address book
   /// [results] is the number of results we want the method will perform a take on the full list
-  Iterable<Person> getPeople({results = int}) {
+  Iterable<Person> getPeople({int results = 10}) {
     final Map<String, dynamic> data = jsonDecode(peopleJson);
 
     // final List<Person> toReturn =
     //     people.map((e) => Person.fromJson(e as Map<String, dynamic>)).take(1);
     final toReturn = List<Person>.from(
-        data['results']!.map((x) => Person.fromJson(x)).take(1));
+        data['results']!.map((x) => Person.fromJson(x)).take(results));
 
     return toReturn;
   }

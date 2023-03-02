@@ -1,3 +1,4 @@
+import 'package:address_book/models/models.dart';
 import 'package:address_book/services/people_service.dart';
 import 'package:flutter/material.dart';
 
@@ -10,12 +11,24 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = PeopleService().getPeople(results: 1).toList();
+    final data = PeopleService().getPeople(results: 10).toList();
 
-    return const MaterialApp(
+    Widget mapItemToListView(Person p) {
+      //p.picture.medium
+      return Row(
+        children: [
+          CircleAvatar(
+            radius: 40,
+            foregroundImage: NetworkImage(p.picture!.medium!),
+          ),
+        ],
+      );
+    }
+
+    return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+        body: ListView(
+          children: data.map(mapItemToListView).toList(),
         ),
       ),
     );
