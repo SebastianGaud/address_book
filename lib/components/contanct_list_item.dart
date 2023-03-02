@@ -15,50 +15,68 @@ class ContactListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
+    return ListTile(
+      leading: CircleAvatar(
+        radius: 40,
+        foregroundImage: NetworkImage(this.srcProfile),
+      ),
+      title: Text.rich(
+        TextSpan(
           children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-              child: CircleAvatar(
-                radius: 40,
-                foregroundImage: NetworkImage(srcProfile),
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(text: firstName),
-                      const TextSpan(text: " "),
-                      TextSpan(text: lastName)
-                    ],
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w700),
-                  ),
-                ),
-                Text(
-                  textAlign: TextAlign.left,
-                  cell,
-                  style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.grey),
-                ),
-              ],
-            ),
+            TextSpan(text: firstName),
+            const TextSpan(text: " "),
+            TextSpan(text: lastName)
           ],
+          //style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
         ),
-        const Padding(
-          padding: EdgeInsets.only(right: 20),
-          child: Icon(Icons.phone_enabled_rounded),
-        )
-      ],
+      ),
+      subtitle: Text(cell),
+      trailing: Icon(Icons.phone_enabled_rounded),
     );
+    // return Row(
+    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //   children: [
+    //     Row(
+    //       children: [
+    //         Padding(
+    //           padding:
+    //               const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+    //           child: CircleAvatar(
+    //             radius: 40,
+    //             foregroundImage: NetworkImage(srcProfile),
+    //           ),
+    //         ),
+    //         Column(
+    //           crossAxisAlignment: CrossAxisAlignment.start,
+    //           children: [
+    //             Text.rich(
+    //               TextSpan(
+    //                 children: [
+    //                   TextSpan(text: firstName),
+    //                   const TextSpan(text: " "),
+    //                   TextSpan(text: lastName)
+    //                 ],
+    //                 style: const TextStyle(
+    //                     fontSize: 16, fontWeight: FontWeight.w700),
+    //               ),
+    //             ),
+    //             Text(
+    //               textAlign: TextAlign.left,
+    //               cell,
+    //               style: const TextStyle(
+    //                   fontSize: 14,
+    //                   fontWeight: FontWeight.w300,
+    //                   color: Colors.grey),
+    //             ),
+    //           ],
+    //         ),
+    //       ],
+    //     ),
+    //     const Padding(
+    //       padding: EdgeInsets.only(right: 20),
+    //       child: Icon(Icons.phone_enabled_rounded),
+    //     )
+    //   ],
+    // );
   }
 }
