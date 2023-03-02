@@ -26,6 +26,7 @@ class MainApp extends StatelessWidget {
             ),
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text.rich(
                 TextSpan(
@@ -38,19 +39,14 @@ class MainApp extends StatelessWidget {
                       fontSize: 20, fontWeight: FontWeight.w700),
                 ),
               ),
-              Container(
-                height: 50,
-                child: Expanded(
-                  child: Text(
-                    textAlign: TextAlign.left,
-                    p.cell!,
-                    style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.grey),
-                  ),
-                ),
-              )
+              Text(
+                textAlign: TextAlign.left,
+                p.cell!,
+                style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.grey),
+              ),
             ],
           )
         ],
