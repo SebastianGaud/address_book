@@ -16,44 +16,54 @@ class MainApp extends StatelessWidget {
     Widget mapItemToListView(Person p) {
       //p.picture.medium
       return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-            child: CircleAvatar(
-              radius: 50,
-              foregroundImage: NetworkImage(p.picture!.medium!),
-            ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
             children: [
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(text: p.firstName!),
-                    const TextSpan(text: " "),
-                    TextSpan(text: p.lastName!)
-                  ],
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.w700),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                child: CircleAvatar(
+                  radius: 40,
+                  foregroundImage: NetworkImage(p.picture!.medium!),
                 ),
               ),
-              Text(
-                textAlign: TextAlign.left,
-                p.cell!,
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w300,
-                    color: Colors.grey),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(text: p.firstName!),
+                        const TextSpan(text: " "),
+                        TextSpan(text: p.lastName!)
+                      ],
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                  Text(
+                    textAlign: TextAlign.left,
+                    p.cell!,
+                    style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.grey),
+                  ),
+                ],
               ),
             ],
+          ),
+          const Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: Icon(Icons.phone_enabled_rounded),
           )
         ],
       );
     }
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: ListView(
           children: data.map(mapItemToListView).toList(),
