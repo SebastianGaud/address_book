@@ -17,10 +17,42 @@ class MainApp extends StatelessWidget {
       //p.picture.medium
       return Row(
         children: [
-          CircleAvatar(
-            radius: 40,
-            foregroundImage: NetworkImage(p.picture!.medium!),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+            child: CircleAvatar(
+              radius: 50,
+              foregroundImage: NetworkImage(p.picture!.medium!),
+            ),
           ),
+          Column(
+            children: [
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(text: p.firstName!),
+                    const TextSpan(text: " "),
+                    TextSpan(text: p.lastName!)
+                  ],
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w700),
+                ),
+              ),
+              Container(
+                height: 50,
+                child: Expanded(
+                  child: Text(
+                    textAlign: TextAlign.left,
+                    p.cell!,
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.grey),
+                  ),
+                ),
+              )
+            ],
+          )
         ],
       );
     }
