@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:address_book/components/favorite.dart';
 
 class ContactListItem extends StatelessWidget {
   final String srcProfile;
   final String firstName;
   final String lastName;
   final String cell;
+  final bool isFavorite;
   //final ValueSetter<String> onFavorite;
   //final ValueGetter<String> onFavorite;
 
@@ -16,11 +18,12 @@ class ContactListItem extends StatelessWidget {
       required this.firstName,
       required this.lastName,
       required this.cell,
-      required this.onFavorite});
+      required this.onFavorite,
+      this.isFavorite = false});
 
   onPressed() {
-    print(this.cell);
-    onFavorite(this.cell);
+    print(cell);
+    onFavorite(cell);
   }
 
   @override
@@ -28,7 +31,7 @@ class ContactListItem extends StatelessWidget {
     return ListTile(
       leading: CircleAvatar(
         radius: 40,
-        foregroundImage: NetworkImage(this.srcProfile),
+        foregroundImage: NetworkImage(srcProfile),
       ),
       title: Text.rich(
         TextSpan(
@@ -45,7 +48,7 @@ class ContactListItem extends StatelessWidget {
         width: 80,
         child: Row(
           children: [
-            IconButton(onPressed: onPressed, icon: const Icon(Icons.favorite)),
+            Favorite(onFavorite: onPressed, isFavorite: this.isFavorite),
             const Icon(Icons.phone_enabled_rounded)
           ],
         ),
