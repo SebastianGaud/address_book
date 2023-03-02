@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Favorite extends StatefulWidget {
+class Favorite extends StatelessWidget {
   final void Function() onFavorite;
   final bool isFavorite;
 
@@ -8,30 +8,10 @@ class Favorite extends StatefulWidget {
       {super.key, required this.onFavorite, this.isFavorite = false});
 
   @override
-  State<Favorite> createState() => _FavoriteState();
-}
-
-class _FavoriteState extends State<Favorite> {
-  bool _isFavorite = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _isFavorite = widget.isFavorite;
-  }
-
-  setFavorite() {
-    widget.onFavorite();
-    setState(() {
-      _isFavorite = !_isFavorite;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (_isFavorite) {
+    if (isFavorite) {
       return IconButton(
-          onPressed: setFavorite,
+          onPressed: onFavorite,
           icon: Icon(
             Icons.favorite_rounded,
             color: Colors.red[400],
@@ -39,7 +19,6 @@ class _FavoriteState extends State<Favorite> {
     }
 
     return IconButton(
-        onPressed: setFavorite,
-        icon: const Icon(Icons.favorite_border_rounded));
+        onPressed: onFavorite, icon: const Icon(Icons.favorite_border_rounded));
   }
 }
