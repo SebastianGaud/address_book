@@ -17,13 +17,20 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   int _selectedIndex = 0;
-  List<Person> _favoritePerson = [];
+  final List<Person> _favoritePerson = [];
 
   @override
   Widget build(BuildContext context) {
     final data = PeopleService().getPeople(results: 100).toList();
 
     void onFavorite(String cell) {
+      final eF =
+          _favoritePerson.where((element) => element.cell == cell).toList();
+
+      if (eF.isNotEmpty) {
+        return;
+      }
+
       final e = data.firstWhere((element) => element.cell == cell);
       setState(() {
         _favoritePerson.add(e);
